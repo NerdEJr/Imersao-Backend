@@ -1,4 +1,6 @@
 import express from "express";
+import conectarAoBanco from "./src/config/dbConfig.js";
+import routes from "./src/routes/postsRoutes.js";
 
 const posts = [
     {
@@ -34,14 +36,12 @@ const posts = [
   ];
 
 const app = express(); // criando a variavel do servidor
+routes(app);
 app.use(express.json()); // funcionalidade parse, tudo oq for identificado como json seja passado como tal
 app.listen(3000,() => { // comando para o servidor "ouvir" requisições na porta 3000
     console.log("Servidor escutando... ");
 });
 
-app.get("/posts", (req, res) =>{ // criando uma rota "posts" do tipo GET; Passando uma arrow function com requisição e resposta
-    res.status(200).json(posts); // res.status(200) código HTTP de status, significando que deu tudo certo; .json deixando de forma explicitada 
-});
 
 function buscarPostPorID(id){
     return posts.findIndex((post) => { // função JS que busca baseado pelo Index
