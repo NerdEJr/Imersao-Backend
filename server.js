@@ -2,6 +2,8 @@ import express from "express";
 import conectarAoBanco from "./src/config/dbConfig.js";
 import routes from "./src/routes/postsRoutes.js";
 
+await conectarAoBanco(process.env.STRING_CONEXAO);
+
 const posts = [
     {
         id: 1,
@@ -13,26 +15,6 @@ const posts = [
         descricao: "Gato brincando com um novelo de lã",
         imagem: "https://placekitten.com/400/300"
     },
-    {
-        id: 3,
-        descricao: "Paisagem com um pôr do sol incrível",
-        imagem: "https://picsum.photos/seed/picsum/600/400"
-    },
-    {
-        id: 4, 
-        descricao: "Foto de um cachorro sorrindo",
-        imagem: "https://random.dog/woof.jpg"
-    },
-    {
-        id: 5, 
-        descricao: "Montanha coberta de neve",
-        imagem: "https://source.unsplash.com/random/600x400/?mountain,snow"
-    },
-    {
-        id: 6,
-        descricao: "Comida deliciosa",
-        imagem: "https://loremflickr.com/640/480/food"
-    }
   ];
 
 const app = express(); // criando a variavel do servidor
